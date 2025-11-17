@@ -1,4 +1,5 @@
 # ingest_to_qdrant.py
+# ingest_to_qdrant.py
 import os
 import json
 import pandas as pd
@@ -24,14 +25,15 @@ VECTOR_SIZE = 768
 try:
     client.get_collection(COLLECTION_NAME)
 except Exception:
-    client.recreate_collection(
+    if not client.collection_exists(COLLECTION_NAME):
+        client.create_collection(
         collection_name=COLLECTION_NAME,
-        vectors_config=rest.VectorParams(size=VECTOR_SIZE, distance=rest.Distance.COSINE),
-        shard_number=1
+        vectors_config=rest.VectorParams(size=VECTOR_SIZE, distance=rest.Distance.COSINE)
     )
+    
 
 # Load CSV
-df = pd.read_csv("D:\Melbin\Desktop\qdrant-hackathon\differently_abled_candidates_uae.csv")
+df = pd.read_csv(r"D:\Melbin\Desktop\qdrant-hackathon\differently_abled_candidates_uae.csv")
 
 def candidate_text_to_embed(row):
     parts = []
@@ -69,6 +71,8 @@ if points:
     client.upsert(collection_name=COLLECTION_NAME, points=points)
 
 print("Ingestion complete.")
+
+
 
 
 
