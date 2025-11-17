@@ -1,7 +1,4 @@
-# ingest_to_qdrant.py
-# ingest_to_qdrant.py
 import os
-import json
 import pandas as pd
 from qdrant_client import QdrantClient
 from qdrant_client.http import models as rest
@@ -10,7 +7,7 @@ from sklearn.preprocessing import normalize
 import numpy as np
 
 QDRANT_URL = os.getenv("https://4a8c79c1-1d51-435f-92ea-4fbb28af3f11.us-west-1-0.aws.cloud.qdrant.io:6333", None)  
-QDRANT_API_KEY = os.getenv("", None)
+QDRANT_API_KEY = os.getenv("QDRANT_API_KEY", None)
 COLLECTION_NAME = "db"
 
 # Embedding model
@@ -33,7 +30,7 @@ except Exception:
     
 
 # Load CSV
-df = pd.read_csv(r"D:\Melbin\Desktop\qdrant-hackathon\differently_abled_candidates_uae.csv")
+df = pd.read_csv("differently_abled_candidates_uae.csv")
 
 def candidate_text_to_embed(row):
     parts = []
@@ -71,6 +68,7 @@ if points:
     client.upsert(collection_name=COLLECTION_NAME, points=points)
 
 print("Ingestion complete.")
+
 
 
 
