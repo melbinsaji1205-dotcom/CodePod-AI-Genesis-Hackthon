@@ -4,8 +4,8 @@ from matching import get_recommendations, embed_text
 from qdrant_client import QdrantClient
 
 client = QdrantClient(
-    url="https://0b81db2c-c6b1-4ad8-85ae-41330568295f.europe-west3-0.gcp.cloud.qdrant.io:6333",  # your Qdrant Cloud URL
-    api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.P9qf7bJaV2hpzpkgIUlusSFVyJLUz3jHrXDI8X6SMgU"                              # your API key
+    url=""https://4a8c79c1-1d51-435f-92ea-4fbb28af3f11.us-west-1-0.aws.cloud.qdrant.io:6333", 
+    api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.JLpMaR2JIwITPOAgRUnFBT3rjciZoZrZ91YgEOgs9ro"                              # your API key
 )
 
 st.title("CodePod")
@@ -28,5 +28,6 @@ if st.button("Find candidates"):
         else:
             st.write("Contact: (not shared)")
         st.write("---")
+
 
 
