@@ -8,7 +8,7 @@ from sentence_transformers import SentenceTransformer
 from sklearn.preprocessing import normalize
 import numpy as np
 
-QDRANT_URL = os.getenv("", None)  
+QDRANT_URL = os.getenv("https://0b81db2c-c6b1-4ad8-85ae-41330568295f.europe-west3-0.gcp.cloud.qdrant.io:6333", None)  
 QDRANT_API_KEY = os.getenv("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.P9qf7bJaV2hpzpkgIUlusSFVyJLUz3jHrXDI8X6SMgU", None)
 COLLECTION_NAME = "db"
 
@@ -69,6 +69,7 @@ if points:
     client.upsert(collection_name=COLLECTION_NAME, points=points)
 
 print("Ingestion complete.")
+
 
 
 
