@@ -9,7 +9,7 @@ from sklearn.preprocessing import normalize
 import numpy as np
 
 QDRANT_URL = os.getenv("http://localhost:6333", None)  
-QDRANT_API_KEY = os.getenv("ey", None)
+QDRANT_API_KEY = os.getenv("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.P9qf7bJaV2hpzpkgIUlusSFVyJLUz3jHrXDI8X6SMgU", None)
 COLLECTION_NAME = "db"
 
 # Embedding model
@@ -69,5 +69,6 @@ if points:
     client.upsert(collection_name=COLLECTION_NAME, points=points)
 
 print("Ingestion complete.")
+
 
 
