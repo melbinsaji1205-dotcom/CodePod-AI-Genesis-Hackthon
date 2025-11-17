@@ -5,6 +5,7 @@ from qdrant_client.http import models as rest
 from sentence_transformers import SentenceTransformer
 from sklearn.preprocessing import minmax_scale
 import streamlit as st
+from sentence_transformers import SentenceTransformer
 
 QDRANT_URL = st.secrets["QDRANT_URL"]
 QDRANT_API_KEY = st.secrets["QDRANT_API_KEY"]
@@ -12,6 +13,7 @@ COLLECTION = "db"
 text_model = SentenceTransformer("all-mpnet-base-v2")
 client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
 
+model = SentenceTransformer("all-MiniLM-L6-v2")
 def embed_text(text):
     return text_model.encode(text, normalize_embeddings=True)
 
@@ -62,6 +64,7 @@ def get_recommendations(job_text, requested_skills, top_k=50, inclusion_policy_s
     # Sort descending by inclusion impact score
     results = sorted(results, key=lambda x: x["inclusion_impact_score"], reverse=True)
     return results
+
 
 
 
