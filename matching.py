@@ -5,8 +5,8 @@ from qdrant_client.http import models as rest
 from sentence_transformers import SentenceTransformer
 from sklearn.preprocessing import minmax_scale
 
-QDRANT_URL = os.getenv("QDRANT_URL")
-QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
+QDRANT_URL = st.secrets["QDRANT_URL"]
+QDRANT_API_KEY = st.secrets["QDRANT_API_KEY"]
 COLLECTION = "db"
 text_model = SentenceTransformer("all-mpnet-base-v2")
 
@@ -60,6 +60,7 @@ def get_recommendations(job_text, requested_skills, top_k=50, inclusion_policy_s
     # Sort descending by inclusion impact score
     results = sorted(results, key=lambda x: x["inclusion_impact_score"], reverse=True)
     return results
+
 
 
 
