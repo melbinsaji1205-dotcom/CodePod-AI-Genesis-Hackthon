@@ -7,8 +7,6 @@ QDRANT_URL = os.getenv("QDRANT_URL")
 QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
 COLLECTION = "db"
 st.title("CodePod")
-client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
-text_model = SentenceTransformer("all-mpnet-base-v2")
 
 job_text = st.text_area("Enter job description / requirements", height=200)
 skills_input = st.text_input("Requested skills (comma-separated)")
@@ -28,6 +26,7 @@ if st.button("Find candidates"):
         else:
             st.write("Contact: (not shared)")
         st.write("---")
+
 
 
 
