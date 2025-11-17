@@ -4,4 +4,5 @@ torch
 pypdf
 openpyxl
 pandas
+streamlit
 qdrant-client
