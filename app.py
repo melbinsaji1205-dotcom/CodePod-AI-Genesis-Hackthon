@@ -2,6 +2,11 @@
 import streamlit as st
 from matching import get_recommendations, embed_text
 
+client = QdrantClient(
+    url="https://0b81db2c-c6b1-4ad8-85ae-41330568295f.europe-west3-0.gcp.cloud.qdrant.io:6333",  # your Qdrant Cloud URL
+    api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.P9qf7bJaV2hpzpkgIUlusSFVyJLUz3jHrXDI8X6SMgU"                              # your API key
+)
+
 st.title("CodePod")
 
 job_text = st.text_area("Enter job description / requirements", height=200)
@@ -22,3 +27,4 @@ if st.button("Find candidates"):
         else:
             st.write("Contact: (not shared)")
         st.write("---")
+
