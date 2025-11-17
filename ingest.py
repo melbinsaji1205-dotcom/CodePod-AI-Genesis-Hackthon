@@ -5,9 +5,10 @@ from qdrant_client.http import models as rest
 from sentence_transformers import SentenceTransformer
 from sklearn.preprocessing import normalize
 import numpy as np
+import streamlit as st
 
-QDRANT_URL = os.getenv("https://4a8c79c1-1d51-435f-92ea-4fbb28af3f11.us-west-1-0.aws.cloud.qdrant.io:6333", None)  
-QDRANT_API_KEY = os.getenv("QDRANT_API_KEY", None)
+QDRANT_URL = st.secrets["QDRANT_URL"]
+QDRANT_API_KEY = st.secrets["QDRANT_API_KEY"]
 COLLECTION_NAME = "db"
 
 # Embedding model
@@ -68,6 +69,7 @@ if points:
     client.upsert(collection_name=COLLECTION_NAME, points=points)
 
 print("Ingestion complete.")
+
 
 
 
