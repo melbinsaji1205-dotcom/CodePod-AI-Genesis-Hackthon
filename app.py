@@ -4,7 +4,7 @@ from matching import get_recommendations, embed_text
 from qdrant_client import QdrantClient
 
 client = QdrantClient(
-    url=""https://4a8c79c1-1d51-435f-92ea-4fbb28af3f11.us-west-1-0.aws.cloud.qdrant.io:6333", 
+    url="https://4a8c79c1-1d51-435f-92ea-4fbb28af3f11.us-west-1-0.aws.cloud.qdrant.io:6333", 
     api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.JLpMaR2JIwITPOAgRUnFBT3rjciZoZrZ91YgEOgs9ro"                              # your API key
 )
 
@@ -28,6 +28,7 @@ if st.button("Find candidates"):
         else:
             st.write("Contact: (not shared)")
         st.write("---")
+
 
 
 
