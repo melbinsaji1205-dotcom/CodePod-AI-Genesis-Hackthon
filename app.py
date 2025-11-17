@@ -1,6 +1,7 @@
 # app.py
 import streamlit as st
 from matching import get_recommendations, embed_text
+from qdrant_client import QdrantClient
 
 client = QdrantClient(
     url="https://0b81db2c-c6b1-4ad8-85ae-41330568295f.europe-west3-0.gcp.cloud.qdrant.io:6333",  # your Qdrant Cloud URL
@@ -27,4 +28,5 @@ if st.button("Find candidates"):
         else:
             st.write("Contact: (not shared)")
         st.write("---")
+
 
