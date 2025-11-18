@@ -15,7 +15,7 @@ COLLECTION_NAME = "db"
 text_model = SentenceTransformer("all-mpnet-base-v2")  # 768 dims
 
 # Qdrant client
-client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY) if QDRANT_URL else QdrantClient()
+client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY) 
 
 VECTOR_SIZE = 768 
 
@@ -69,6 +69,7 @@ if points:
     client.upsert(collection_name=COLLECTION_NAME, points=points)
 
 print("Ingestion complete.")
+
 
 
 
