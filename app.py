@@ -3,6 +3,11 @@ import streamlit as st
 from matching import get_recommendations, embed_text
 from qdrant_client import QdrantClient
 
+client = QdrantClient(
+    url=st.secrets["QDRANT_URL"],
+    api_key=st.secrets["QDRANT_API_KEY"]
+)
+
 st.set_page_config(page_title="CodePod", layout="wide")
 st.title("CodePod")
 
@@ -24,6 +29,7 @@ if st.button("Find candidates"):
         else:
             st.write("Contact: (not shared)")
         st.write("---")
+
 
 
 
