@@ -9,7 +9,7 @@ from sentence_transformers import SentenceTransformer
 
 QDRANT_URL = st.secrets["QDRANT_URL"]
 QDRANT_API_KEY = st.secrets["QDRANT_API_KEY"]
-COLLECTION = "db"
+COLLECTION_NAME = "db"
 text_model = SentenceTransformer("all-mpnet-base-v2")
 client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
 
@@ -40,7 +40,7 @@ def compute_accessibility_fit(candidate_payload, job_requirements_tags):
 
 def get_recommendations(job_text, requested_skills, top_k=50, inclusion_policy_score=0.5):
     job_emb = embed_text(job_text).tolist()
-    hits = client.search(collection_name=COLLECTION, query_vector=job_emb, limit=top_k*3)
+    hits = client.search(collection_name=COLLECTION_NAME, query_vector=job_emb, limit=top_k*3)
 
     results = []
     match_scores = [h.score for h in hits] 
@@ -63,6 +63,7 @@ def get_recommendations(job_text, requested_skills, top_k=50, inclusion_policy_s
     # Sort descending by inclusion impact score
     results = sorted(results, key=lambda x: x["inclusion_impact_score"], reverse=True)
     return results
+
 
 
 
