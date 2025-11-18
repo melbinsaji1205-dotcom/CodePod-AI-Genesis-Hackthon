@@ -23,10 +23,10 @@ VECTOR_SIZE = 768
 try:
     client.get_collection(COLLECTION_NAME)
 except Exception:
-    if not client.collection_exists(COLLECTION_NAME):
-        client.create_collection(
+    client.recreate_collection(
         collection_name=COLLECTION_NAME,
-        vectors_config=rest.VectorParams(size=VECTOR_SIZE, distance=rest.Distance.COSINE)
+        vector_config=rest.Vectorparams(size-VECTOR_SIZE, distance=rest.Distance.COSINE)
+        shard_number=1
     )
     
 
@@ -69,6 +69,7 @@ if points:
     client.upsert(collection_name=COLLECTION_NAME, points=points)
 
 print("Ingestion complete.")
+
 
 
 
