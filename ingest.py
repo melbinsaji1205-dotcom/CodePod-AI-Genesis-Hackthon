@@ -70,6 +70,17 @@ if points:
 
 print("Ingestion complete.")
 
+# Example: reading local vectors and upserting into cloud
+client_local = QdrantClient(url="http://localhost:6333")
+client_cloud = QdrantClient(
+    url="QDRANT_URL",
+    api_key="QDRANT_API_KEY"
+)
+
+points = client_local.scroll(collection_name="db").points
+client_cloud.upsert(collection_name="db", points=points)
+
+
 
 
 
